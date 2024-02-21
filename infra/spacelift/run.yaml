@@ -1,0 +1,10 @@
+---
+apiVersion: app.spacelift.io/v1beta1
+kind: Run
+metadata:
+  name: spacelift-operator-demo
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  stackName: demo-stack

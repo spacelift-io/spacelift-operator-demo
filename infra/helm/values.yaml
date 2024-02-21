@@ -1,0 +1,18 @@
+replicaCount: 1
+image:
+  repository: ghcr.io/spacelift-io/spacelift-operator-demo
+  pullPolicy: IfNotPresent
+  tag: ""
+service:
+  type: ClusterIP
+  port: 8888
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+app:
+  envFromSecret: stack-output-spacelift-operator-demo

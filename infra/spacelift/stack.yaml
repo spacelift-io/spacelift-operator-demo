@@ -1,0 +1,27 @@
+apiVersion: app.spacelift.io/v1beta1
+kind: Stack
+metadata:
+  name: demo-stack
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  name: spacelift-operator-demo
+  commitSHA: 58de3fcc53659909a9779d3a5ed71aef1959b5a8
+  settings:
+    administrative: false
+    space: spacelift-operator-01HR9KQ590MFT6H6ETFJ657KR6
+    namespace: spacelift-io
+    repository: spacelift-operator-demo
+    projectRoot: infra/tf
+    branch: main
+    managesStateFile: true
+    awsIntegration:
+      id: 01HRQ4YMJQTP5R6K8Q9N1NB3XM
+      read: true
+      write: true
+    vendorConfig:
+      terraform:
+        version: 1.6.2
+        workflowTool: OPEN_TOFU
+    labels:
+      - argo
