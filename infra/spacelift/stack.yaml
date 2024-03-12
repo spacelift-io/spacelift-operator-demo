@@ -8,6 +8,7 @@ spec:
   name: spacelift-operator-demo
   commitSHA: 58de3fcc53659909a9779d3a5ed71aef1959b5a8
   settings:
+    autodeploy: false
     administrative: false
     space: spacelift-operator-01HR9KQ590MFT6H6ETFJ657KR6
     namespace: spacelift-io
