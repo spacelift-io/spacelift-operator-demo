@@ -79,6 +79,18 @@ kubectl port-forward service/operator-demo 8888
 
 And then open http://localhost:8888
 
+### Cleanup
+
+In order to clean up your install, run:
+
+```shell
+helm uninstall operator-demo
+kubectl delete --ignore-not-found=true -f infra/spacelift/run.yaml
+kubectl delete --ignore-not-found=true -f infra/spacelift/stack.yaml
+```
+
+Please also remember to clean up stack on the spacelift side, since we do not perform stack deletion.
+
 ## Argo
 
 TODO
