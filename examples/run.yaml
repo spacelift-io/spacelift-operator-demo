@@ -1,0 +1,6 @@
+apiVersion: app.spacelift.io/v1beta1
+kind: Run
+metadata:
+  generateName: spacelift-operator-demo
+spec:
+  stackName: spacelift-operator-demo

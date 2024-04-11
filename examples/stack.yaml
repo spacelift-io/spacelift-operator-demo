@@ -1,0 +1,8 @@
+apiVersion: app.spacelift.io/v1beta1
+kind: Stack
+metadata:
+  name: spacelift-operator-demo
+spec:
+  name: spacelift-operator-demo
+  settings:
+    repository: eliecharra/terraform-sample

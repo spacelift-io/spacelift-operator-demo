@@ -223,8 +223,6 @@ spec:
                   managesStateFile:
                     description: In our API managesStateFile is not part of StackInput
                     type: boolean
-                  namespace:
-                    type: string
                   projectRoot:
                     type: string
                   protectFromDeletion:
@@ -320,18 +318,26 @@ spec:
                   workerPool:
                     type: string
                 required:
-                - administrative
-                - branch
                 - repository
                 type: object
             required:
-            - commitSHA
             - name
             - settings
             type: object
           status:
             description: StackStatus defines the observed state of Stack
             properties:
+              argo:
+                description: Argo is a status that could be used by argo health check
+                  to sync on health
+                properties:
+                  health:
+                    description: ArgoHealth is a string type to represent the argo
+                      health of a resource More info on the argo doc here https://argo-cd.readthedocs.io/en/stable/operator-manual/health/
+                    type: string
+                required:
+                - health
+                type: object
               id:
                 description: State is the stack state
                 type: string
@@ -361,8 +367,6 @@ spec:
                 type: string
               url:
                 type: string
-            required:
-            - ready
             type: object
         type: object
     served: true
@@ -692,7 +696,7 @@ spec:
         - --leader-elect
         command:
         - /spacelift-operator
-        image: ghcr.io/spacelift-io/spacelift-operator:7434b15ea0f1cbd3a1cfe040f77b3ed4f9c8ab5d
+        image: ghcr.io/spacelift-io/spacelift-operator:86f340892108377f2a20dd0697626339339e77ed
         livenessProbe:
           httpGet:
             path: /healthz

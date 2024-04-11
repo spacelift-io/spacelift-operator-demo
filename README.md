@@ -1,4 +1,43 @@
-# Setup
+# Run minimal example
+
+## Install the operator
+
+Create a secret in your cluster to allow the controller to perform changes on spacelift backend.
+It's simpler to configure a token the dedicated space on spacelift preprod because everything is configured.
+The secret should be created in the same namespace as Stack and Run resources that we are going to create afterward.
+
+```shell
+kubectl create secret generic spacelift-credentials\
+  --from-literal=SPACELIFT_API_KEY_ENDPOINT='https://CHANGEME.app.spacelift.io'\
+  --from-literal=SPACELIFT_API_KEY_ID='CHANGEME'\
+  --from-literal=SPACELIFT_API_KEY_SECRET='CHANGEME'
+```
+
+Then install the operator in the cluster with
+
+```shell
+kubectl apply -f controller
+```
+
+## Create a stack
+
+```shell
+kubectl apply -f examples/stack.yaml
+```
+
+See if the stack has been created on spacelift, if not you can inspect the controller logs to see what happened.
+
+```shell
+kubectl logs -f -n spacelift-operator-system deploy/spacelift-operator-controller-manager
+```
+
+## Trigger a run
+
+```shell
+kubectl create -f examples/run.yaml
+```
+
+# Setup the kubecon demo
 
 ## (optional) Configure org
 
